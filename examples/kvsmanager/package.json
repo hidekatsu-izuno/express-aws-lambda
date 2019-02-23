@@ -1,0 +1,21 @@
+{
+  "name": "kvsmanager",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development node index.js",
+    "debug": "cross-env NODE_ENV=development node --nolazy --inspect-brk=9229 index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Hidekatsu Izuno <hidekatsu.izuno@gmail.com> (https://github.com/hidekatsu-izuno/)",
+  "license": "MIT",
+  "dependencies": {
+    "esm": "^3.2.6",
+    "express": "^4.16.4",
+    "express-aws-lambda": "file:../../"
+  },
+  "devDependencies": {
+    "cross-env": "^5.2.0"
+  }
+}
