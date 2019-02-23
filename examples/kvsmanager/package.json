@@ -13,7 +13,7 @@
   "dependencies": {
     "esm": "^3.2.6",
     "express": "^4.16.4",
-    "express-aws-lambda": "file:../../"
+    "express-aws-lambda": "hidekatsu-izuno/express-aws-lambda"
   },
   "devDependencies": {
     "cross-env": "^5.2.0"
