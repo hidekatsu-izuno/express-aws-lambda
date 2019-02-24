@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node":">= 0.8.10"
+  },
   "directories": {
     "lib": "lib"
   },

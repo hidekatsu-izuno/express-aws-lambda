@@ -1,0 +1,13 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "kvsmanager",
+            "program": "${workspaceFolder}/examples/kvsmanager/node_modules/node-lambda/bin/node-lambda",
+            "cwd": "${workspaceFolder}/examples/kvsmanager",
+            "args": [ "run" ]
+        }
+    ]
+}

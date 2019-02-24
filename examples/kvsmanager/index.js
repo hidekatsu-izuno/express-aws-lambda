@@ -33,9 +33,5 @@ app.use(function dispatch(req, res, next) {
     }
 });
 
-if (process.env.NODE_ENV === 'development') {
-    app.listen(3000)
-} else {
-    exports.handler = require('express-aws-lambda')(app);
-}
+exports.handler = require('express-aws-lambda')(app);
 
