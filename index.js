@@ -48,7 +48,7 @@ module.exports = function serverless(app) {
             callback(err, null);
         } else {
             const result = res._getResult();
-            debug("result: %o" + result);
+            debug("result: %o", result);
             callback(null, result);
         }
     };
