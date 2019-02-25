@@ -6,11 +6,21 @@
 
 'use strict';
 
-const debug = require('debug')('express-aws-lambda')
+const debug = require('debug')('express-aws-lambda');
+const request = require('express/lib/request');
+const response = require('express/lib/response');
 const IncomingMessage = require('./lib/incoming_message');
 const ServerResponse = require('./lib/server_response');
-const request = require('./lib/request2');
-const response = require('./lib/response');
+
+Object.getOwnPropertyNames(request).forEach(name => {
+    const desc = Object.getOwnPropertyDescriptor(request, name);
+    Object.defineProperty(req, name, desc);
+});
+
+Object.getOwnPropertyNames(response).forEach(name => {
+    const desc = Object.getOwnPropertyDescriptor(response, name);
+    Object.defineProperty(res, name, desc);
+});
 
 module.exports = function serverless(app) {
     app.request = Object.create(request, {
