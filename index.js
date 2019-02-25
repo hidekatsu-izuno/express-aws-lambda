@@ -25,18 +25,13 @@ module.exports = function serverless(app) {
         const req = new IncomingMessage(event);
         const res = new ServerResponse();
 
-        let processed = false;
-        app.handle(req, res, (error) => {
-            const result = res._getResult();
-            console.log("result: " + JSON.stringify(result));
-            callback(error, result);
-            processed = true;
+        let rerr = null;
+        app.handle(req, res, err => {
+            rerr = err;
         });
     
-        if (!processed) {
-            const result = res._getResult();
-            console.log("result: " + JSON.stringify(result));
-            callback(null, result);
-        }
+        const result = res._getResult();
+        console.log("result: " + JSON.stringify(result));
+        callback(rerr, result);
     };
 }
