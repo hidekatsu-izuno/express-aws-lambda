@@ -21,17 +21,22 @@ module.exports = function serverless(app) {
     });
 
     return function handler(event, context, callback) {
+        console.log("event: " + JSON.stringify(event));
         const req = new IncomingMessage(event);
         const res = new ServerResponse();
 
         let processed = false;
         app.handle(req, res, (error) => {
-            callback(error);
+            const result = res._getResult();
+            console.log("result: " + JSON.stringify(result));
+            callback(error, result);
             processed = true;
         });
     
         if (!processed) {
-            callback(null, res._getResult());
+            const result = res._getResult();
+            console.log("result: " + JSON.stringify(result));
+            callback(null, result);
         }
     };
 }
