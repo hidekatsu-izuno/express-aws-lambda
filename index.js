@@ -12,22 +12,24 @@ const response = require('express/lib/response');
 const IncomingMessage = require('./lib/incoming_message');
 const ServerResponse = require('./lib/server_response');
 
+const req = Object.create(IncomingMessage.prototype);
 Object.getOwnPropertyNames(request).forEach(name => {
     const desc = Object.getOwnPropertyDescriptor(request, name);
     Object.defineProperty(req, name, desc);
 });
 
+const res = Object.create(ServerResponse.prototype);
 Object.getOwnPropertyNames(response).forEach(name => {
     const desc = Object.getOwnPropertyDescriptor(response, name);
     Object.defineProperty(res, name, desc);
 });
 
 module.exports = function serverless(app) {
-    app.request = Object.create(request, {
+    app.request = Object.create(req, {
         app: { configurable: true, enumerable: true, writable: true, value: app }
     });
 
-    app.response = Object.create(response, {
+    app.response = Object.create(res, {
         app: { configurable: true, enumerable: true, writable: true, value: app }
     });
 
