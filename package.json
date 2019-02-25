@@ -1,8 +1,16 @@
 {
   "name": "express-aws-lambda",
   "version": "0.1.0",
-  "description": "",
+  "description": "Express.js extension for AWS Lambda and ALB",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hidekatsu-izuno/express-aws-lambda.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hidekatsu-izuno/express-aws-lambda/issues"
+  },
+  "homepage": "https://github.com/hidekatsu-izuno/express-aws-lambda#readme",
   "engines": {
     "node": ">= 0.8.10"
   },
