@@ -1,14 +1,15 @@
 /*!
- * express-serverless
+ * express-aws-lambda
  * Copyright(c) 2019 Hidekatsu Izuno <hidekatsu.izuno@gmail.com>
  * MIT Licensed
  */
 
 'use strict';
 
+const debug = require('debug')('express-aws-lambda')
 const IncomingMessage = require('./lib/incoming_message');
 const ServerResponse = require('./lib/server_response');
-const request = require('./lib/request');
+const request = require('./lib/request2');
 const response = require('./lib/response');
 
 module.exports = function serverless(app) {
@@ -21,17 +22,22 @@ module.exports = function serverless(app) {
     });
 
     return function handler(event, context, callback) {
-        console.log("event: " + JSON.stringify(event));
+        debug("event: %o", event);
         const req = new IncomingMessage(event);
         const res = new ServerResponse();
 
-        let rerr = null;
-        app.handle(req, res, err => {
-            rerr = err;
+        let err = null;
+        app.handle(req, res, _err => {
+            err = _err;
         });
     
-        const result = res._getResult();
-        console.log("result: " + JSON.stringify(result));
-        callback(rerr, result);
+        if (err != null) {
+            debug("err: %o", err);
+            callback(err, null);
+        } else {
+            const result = res._getResult();
+            debug("result: %o" + result);
+            callback(null, result);
+        }
     };
 }

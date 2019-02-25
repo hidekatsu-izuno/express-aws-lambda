@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "engines": {
-    "node":">= 0.8.10"
+    "node": ">= 0.8.10"
   },
   "directories": {
     "lib": "lib"
@@ -13,5 +13,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Hidekatsu Izuno <hidekatsu.izuno@gmail.com> (https://github.com/hidekatsu-izuno/)",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "debug": "^4.1.1"
+  }
 }
