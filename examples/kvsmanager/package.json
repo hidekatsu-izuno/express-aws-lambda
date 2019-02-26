@@ -1,7 +1,7 @@
 {
   "name": "kvsmanager",
   "version": "0.1.0",
-  "description": "",
+  "description": "Sample webapp for lambda",
   "main": "index.js",
   "scripts": {
     "dev": "node-lambda run",
@@ -17,8 +17,7 @@
     "express-aws-lambda": "^0.1.0"
   },
   "devDependencies": {
-    "cross-env": "^5.2.0",
-    "mocha": "^6.0.1",
+    "mocha": "^6.0.2",
     "node-lambda": "^0.13.0"
   }
 }

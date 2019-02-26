@@ -35,7 +35,7 @@ module.exports = function serverless(app) {
 
     return function handler(event, context, callback) {
         debug("event: %o", event);
-        const req = new IncomingMessage(event);
+        const req = new IncomingMessage(event, context);
         const res = new ServerResponse();
 
         let err = null;

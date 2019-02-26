@@ -3,7 +3,8 @@
 This library is a express.js extension for AWS Lambda and ALB.
 You can run your web application for the express.js on AWS Lambda.
 
-This is simillar to [aws-serverless-express](https://github.com/awslabs/aws-serverless-express). As aws-serverless-express doesn't use express.js, is is not able to use many feature.
+This is simillar to [aws-serverless-express](https://github.com/awslabs/aws-serverless-express). 
+But this implementation don't use a socket.
 
 ## Getting Started
 
