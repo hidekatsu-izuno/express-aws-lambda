@@ -14,7 +14,7 @@
   "dependencies": {
     "esm": "^3.2.6",
     "express": "^4.16.4",
-    "express-aws-lambda": "^0.1.0"
+    "express-aws-lambda": "hidekatsu-izuno/express-aws-lambda"
   },
   "devDependencies": {
     "mocha": "^6.0.2",
