@@ -38,18 +38,15 @@ module.exports = function serverless(app) {
         const req = new IncomingMessage(event, context);
         const res = new ServerResponse();
 
-        let err = null;
-        app.handle(req, res, _err => {
-            err = _err;
+        app.handle(req, res, err => {
+            if (err != null) {
+                debug("err: %o", err);
+                callback(err, null);
+            } else {
+                const result = res._getResult();
+                debug("result: %o", result);
+                callback(null, result);
+            }
         });
-    
-        if (err != null) {
-            debug("err: %o", err);
-            callback(err, null);
-        } else {
-            const result = res._getResult();
-            debug("result: %o", result);
-            callback(null, result);
-        }
     };
 }

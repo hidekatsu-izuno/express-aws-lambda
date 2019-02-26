@@ -10,10 +10,11 @@ const express = require('express');
 const app = express();
 const esm = require('esm')(module);
 
+app.use(express.static('static'));
 app.use(express.json());
 app.use(function dispatch(req, res, next) {
     if (/(^|\/)\.+(\/|$)/.test(req.path)) {
-        return;
+        return next();
     }
 
     let module;
@@ -21,17 +22,23 @@ app.use(function dispatch(req, res, next) {
         module = esm(`./server${req.path.endsWith('/') ? req.path + 'index' : req.path}.js`);
     } catch(e) {
         res.status(404);
-        return;
+        return next();
     }
 
     const middleware = module[req.method.toLowerCase()] || module.default;
     if (middleware) {
-        middleware(req, res, next);
-    } else {
-        return;
+        try {
+            if (middleware.length > 2) {
+                middleware(req, res, next);
+            } else {
+                middleware(req, res);
+                next();
+            }
+        } catch (err) {
+            next(err);
+        }
     }
 });
-app.use(express.static('static'));
 
 exports.handler = require('express-aws-lambda')(app);
 

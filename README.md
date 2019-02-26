@@ -20,6 +20,10 @@ const app = express();
 
 app.use(express.json());
 app.use(function (req, res) {
+    // You can access to lambda arguments
+    console.log(req.source.event);
+    console.log(req.source.context);
+
     res.json({
         message: "Hello world!"
     });
@@ -28,5 +32,5 @@ app.use(function (req, res) {
 exports.handler = require('express-aws-lambda')(app);
 ```
 
-When you want to use this package, you have to use a API Gateway or a Application Load Balancer with your lambda application.
+You have to use a API Gateway or a Application Load Balancer with your lambda application when you want to use this module.
 
