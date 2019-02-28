@@ -70,5 +70,12 @@ module.exports = {
         })
       }
     }
+  },
+
+  /*
+  ** Generate configuration
+  */
+  generate: {
+    dir: 'dist/s3'
   }
 }

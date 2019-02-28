@@ -5,10 +5,12 @@
   "author": "Hidekatsu Izuno",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
+    "dev": "cross-env NODE_ENV=development node server/index.js",
     "build": "nuxt build",
     "start": "cross-env NODE_ENV=production node server/index.js",
-    "generate": "nuxt generate",
+    "generate": "npm run generate.frontend && npm run generate.backend",
+    "generate.frontend": "nuxt generate",
+    "generate.backend": "webpack server/lambda.js -o dist/lambda/index.js --mode=production --target=node",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint",
     "test": "jest"
@@ -21,25 +23,26 @@
     "cross-env": "^5.2.0",
     "express": "^4.16.4",
     "jquery": "^3.3.1",
-    "nuxt": "^2.4.0"
+    "nuxt": "^2.4.0",
+    "express-aws-lambda": "hidekatsu-izuno/express-aws-lambda"
   },
   "devDependencies": {
-    "nodemon": "^1.18.9",
     "@nuxtjs/eslint-config": "^0.0.1",
+    "@vue/test-utils": "^1.0.0-beta.27",
+    "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
+    "babel-jest": "^24.1.0",
     "eslint": "^5.0.1",
     "eslint-config-standard": ">=12.0.0",
+    "eslint-loader": "^2.0.0",
     "eslint-plugin-import": ">=2.14.0",
     "eslint-plugin-jest": ">=21.24.1",
     "eslint-plugin-node": ">=7.0.1",
     "eslint-plugin-promise": ">=4.0.1",
     "eslint-plugin-standard": ">=4.0.0",
-    "eslint-loader": "^2.0.0",
     "eslint-plugin-vue": "^5.0.0",
-    "@vue/test-utils": "^1.0.0-beta.27",
-    "babel-core": "7.0.0-bridge.0",
-    "babel-jest": "^24.1.0",
     "jest": "^24.1.0",
-    "vue-jest": "^3.0.2"
+    "vue-jest": "^3.0.2",
+    "webpack-cli": "^3.2.3"
   }
 }

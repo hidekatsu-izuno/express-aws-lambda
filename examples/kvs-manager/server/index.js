@@ -1,6 +1,8 @@
 const express = require('express')
 const { Nuxt, Builder } = require('nuxt')
+const esm = require('esm')(module)
 const app = express()
+const apiDispatcher = esm('./api_dispatcher').default
 
 // Import and Set Nuxt.js options
 const config = require('../nuxt.config.js')
@@ -17,11 +19,23 @@ async function start() {
 
   // Build only in dev mode
   if (config.dev) {
+    const chokidar = require('chokidar')
+    chokidar.watch('./server/api/').on('all', () => {
+        Object.keys(esm.cache).forEach(id => {
+            if (/[\/\\]server[\/\\]api[\/\\]/.test(id)) {
+                delete esm.cache[id];
+            }
+        })
+    })
+
     const builder = new Builder(nuxt)
     await builder.build()
   } else {
     await nuxt.ready()
   }
+
+  // Add API dispatcher
+  app.use(apiDispatcher)
 
   // Give nuxt middleware to express
   app.use(nuxt.render)

@@ -6,6 +6,6 @@
 
 export default function (req, res) {
     res.json([
-        "Hello world!"
+        "Hello world 2!"
     ]);
 }
