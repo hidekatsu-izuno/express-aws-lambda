@@ -3,6 +3,9 @@
   "version": "0.1.1",
   "description": "Sample webapp for lambda",
   "main": "index.js",
+  "files": [
+    "server"
+  ],
   "scripts": {
     "dev": "cross-env NODE_ENV=development node index.js",
     "debug": "node-lambda run --nolazy --inspect-brk=9229",

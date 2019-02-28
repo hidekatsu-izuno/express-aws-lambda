@@ -21,8 +21,8 @@ const app = express();
 app.use(express.json());
 app.use(function (req, res) {
     // You can access to lambda arguments
-    console.log(req.source.event);
-    console.log(req.source.context);
+    console.log(req.platform.event);
+    console.log(req.platform.context);
 
     res.json({
         message: "Hello world!"
