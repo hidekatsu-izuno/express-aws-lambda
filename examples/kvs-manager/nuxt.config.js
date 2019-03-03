@@ -27,6 +27,8 @@ module.exports = {
   ** Global CSS
   */
   css: [
+    'bootstrap/dist/css/bootstrap.css',
+    'bootstrap-vue/dist/bootstrap-vue.css'
   ],
 
   /*
