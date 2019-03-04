@@ -1,40 +1,49 @@
 <template>
 <div>
-<b-navbar toggleable="lg" type="dark" variant="primary">
-  <b-container fluid>
-    <b-navbar-toggle target="nav_collapse" />
-    <b-navbar-brand href="#" class="mx-auto">KVM Manager</b-navbar-brand>
-  </b-container>
-</b-navbar>
-<b-container>
-  <div class="row">
-    <div class="col-12">
-      <b-form>
-        <b-form-group label="Key">
-          <b-form-input />
-        </b-form-group>
-        <b-form-group>
-          <b-button type="submit" variant="primary" class="float-right">Search</b-button>
-        </b-form-group>
-      </b-form>
-      <b-table striped :items="items" />
-    </div>
-  </div>
-</b-container>
+<v-form
+    ref="form"
+    v-model="valid"
+    lazy-validation
+  >
+  <v-text-field
+      v-model="key"
+      label="Key"
+      required
+  />
+  <v-layout
+    justify-end
+  >
+    <v-btn
+      :disabled="!valid"
+      color="primary"
+    >Search</v-btn>
+  </v-layout>
+</v-form>
+<v-list
+  two-line
+>
+  <template v-for="(item) in items">
+    <v-list-tile
+      :key="item.key"
+    >
+      <v-list-tile-content>
+        <v-list-tile-title>{{item.key}}</v-list-tile-title>
+        <v-list-tile-sub-title>{{ item.value }}</v-list-tile-sub-title>
+      </v-list-tile-content>
+    </v-list-tile>
+  </template>
+</v-list>
 </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
+  data: () => ({
+      valid: true,
+      key: null,
       items: [
-        { key: 'sample', value: 'Sample' }
+        { key: 'key', value: 'value' }
       ]
-    }
-  }
+  })
 }
 </script>
-
-<style>
-</style>

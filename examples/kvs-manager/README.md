@@ -1,6 +1,6 @@
 # kvs-manager
 
-> My tiptop Nuxt.js project
+> My impressive Nuxt.js project
 
 ## Build Setup
 
