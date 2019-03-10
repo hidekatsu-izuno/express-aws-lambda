@@ -35,7 +35,8 @@ async function start() {
   }
 
   // Add API dispatcher
-  app.use(apiDispatcher)
+  app.use(express.json())
+  app.use('/api', apiDispatcher)
 
   // Give nuxt middleware to express
   app.use(nuxt.render)

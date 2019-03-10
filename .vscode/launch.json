@@ -4,10 +4,14 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "kvsmanager",
-            "program": "${workspaceFolder}/examples/kvsmanager/node_modules/node-lambda/bin/node-lambda",
-            "cwd": "${workspaceFolder}/examples/kvsmanager",
-            "args": [ "run" ]
+            "name": "kvs-manager",
+            "cwd": "${workspaceFolder}/examples/kvs-manager",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": [
+                "run-script",
+                "debug"
+            ],
+            "port": 9229
         }
     ]
 }

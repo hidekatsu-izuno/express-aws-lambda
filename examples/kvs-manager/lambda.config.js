@@ -9,6 +9,9 @@ module.exports = {
         filename: 'index.js'
     },
     target: 'node',
+    externals: {
+        'aws-sdk': 'aws-sdk'
+    },
     plugins: [
         new ZipPlugin({
             path: path.resolve(__dirname, 'dist'),
