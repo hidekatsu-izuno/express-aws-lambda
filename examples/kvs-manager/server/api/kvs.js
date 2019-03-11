@@ -5,19 +5,28 @@ import dynamodbOptions from '../dynamodb_options';
 const router = express.Router();
 const dynamodb = new AWS.DynamoDB(dynamodbOptions);
 
-router.get('/', async (req, res) => {
+router.get('/', (req, res, next) => {
     const key = req.query.key;
 
-    const results = await dynamodb.scan({
+    dynamodb.scan({
         TableName: "KvsManager"
-    }).promise();
-
-    res.json(results.Items.map(item => {
-        return {
-            key: item.Key.S,
-            value: item.Value.S
+    }, (err, data) => {
+        if (err) {
+            console.log(err);
+            next(err);
+            return;
         }
-    }));
+        console.log(data);
+        const list = data.Items.map(item => {
+            return {
+                key: item.Key.S,
+                value: item.Value.S
+            }
+        });
+        res.json(list);
+        next();
+    });
+    console.log('dynamodb');
 });
 
 router.post('/', async (req, res) => {

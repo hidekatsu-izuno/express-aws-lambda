@@ -2,7 +2,7 @@ import express from 'express';
 
 const router = express.Router();
 
-router.get('/', async (req, res) => {
+router.get('/', (req, res, next) => {
     res.json([
         {
             id: 'MENU_1', type: 'section', text: 'Tables', children: [
@@ -10,6 +10,7 @@ router.get('/', async (req, res) => {
             ]
         }
     ]);
+    next();
 });
 
 export default router;
