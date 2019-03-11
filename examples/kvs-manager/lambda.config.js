@@ -6,7 +6,8 @@ module.exports = {
     entry: path.resolve(__dirname, 'server/lambda.js'),
     output: {
         path: path.resolve(__dirname, 'dist/server'),
-        filename: 'index.js'
+        filename: 'index.js',
+        libraryTarget: 'commonjs2'
     },
     target: 'node',
     externals: {

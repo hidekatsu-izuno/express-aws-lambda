@@ -3,7 +3,6 @@ import util from 'util';
 
 export default async function(req, res) {
     try {
-
         if (/(^|\/)\.+(\/|$)/.test(req.path)) {
             res.status(400).end();
             return;
