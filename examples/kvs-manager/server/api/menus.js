@@ -2,7 +2,7 @@ import express from 'express';
 
 const router = express.Router();
 
-router.get('/', (req, res, next) => {
+router.get('/', (req, res) => {
     res.json([
         {
             id: 'MENU_1', type: 'section', text: 'Tables', children: [
@@ -10,7 +10,6 @@ router.get('/', (req, res, next) => {
             ]
         }
     ]);
-    next();
 });
 
 export default router;

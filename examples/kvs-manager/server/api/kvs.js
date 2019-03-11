@@ -26,7 +26,6 @@ router.get('/', (req, res, next) => {
         res.json(list);
         next();
     });
-    console.log('dynamodb');
 });
 
 router.post('/', async (req, res) => {

@@ -31,14 +31,5 @@ export default function(req, res, next) {
 
     const router = express.Router();
     router.use(subpath, middleware);
-    router(req, res, (err) => {
-        if (err) {
-            res.status(500)
-                .json({
-                    message: err.message
-                })
-                .end();
-        }
-        next();
-    });
+    router(req, res, next);
 };

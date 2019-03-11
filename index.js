@@ -33,21 +33,20 @@ module.exports = function serverless(app) {
         app: { configurable: true, enumerable: true, writable: true, value: app }
     });
 
-    return async function handler(event, context) {
+    return function handler(event, context, callback) {
         debug("event: %o", event);
         const req = new IncomingMessage(event, context);
         const res = new ServerResponse();
 
-        try {
-            return await new Promise(function (resolve, reject) {
-                app.handle(req, res, reject);
+        app.handle(req, res, err => {
+            if (err) {
+                debug("error: %o", err);
+                callback(err, null);
+            } else {
                 const result = res._getResult();
                 debug("result: %o", result);
-                resolve(result);
-            });
-        } catch (err) {
-            debug("error: %o", err);
-            throw err;
-        }
+                callback(null, result);
+            }
+        });
     };
 }
